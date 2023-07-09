@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { fetchCitySuggestions, updateSearchBarInput } from './position';
+import { fetchPopularCities } from './fromPopoular';
+import { fetchPopularCitiesFrom } from './toPopular';
 
 const SearchBar: React.FC = () => {
   const [searchTermInput1, setSearchTermInput1] = useState('');
@@ -12,14 +14,19 @@ const SearchBar: React.FC = () => {
     const value = event.target.value;
     if (inputId === 'input1') {
       setSearchTermInput1(value);
-      const suggestions = await fetchCitySuggestions(value);
-      setCitySuggestionsInput1(suggestions);
+      if (value.trim() === '') {
+        const suggestions = await fetchCitySuggestions(value);
+        setCitySuggestionsInput1(suggestions);
+      } else {
+        const popularCities = await fetchPopularCities();
+        setCitySuggestionsInput1(popularCities);
+      }
     } else if (inputId === 'input2') {
       setSearchTermInput2(value);
       const suggestions = await fetchCitySuggestions(value);
       setCitySuggestionsInput2(suggestions);
     }
-  };
+  };  
 
   const handleInputBlur = (inputId: string) => {
     if (inputId === 'input1') {
@@ -34,6 +41,23 @@ const SearchBar: React.FC = () => {
     console.log('Search term 1:', searchTermInput1);
     console.log('Search term 2:', searchTermInput2);
   };
+
+  // Stockage de l'api onClick sur l'input 1
+  const [popularCities, setPopularCities] = useState<string[]>([]);
+
+  const handleInput1Click = async () => {
+    const cities = await fetchPopularCities();
+    setPopularCities(cities);
+  };  
+  // Stockage de l'état onClick sur l'input 2
+
+  const [popularCitiesFrom, setPopularCitiesFrom] = useState<string[]>([]);
+
+  const handleInput2Click = async () => {
+    const citiesFrom = await fetchPopularCitiesFrom(searchTermInput1);
+    setPopularCitiesFrom(citiesFrom);
+  };
+  
 
   return (
 <div>
@@ -61,13 +85,20 @@ const SearchBar: React.FC = () => {
                 placeholder="from: City, Station or Airport"
                 value={searchTermInput1}
                 id="input1"
+                onFocus={handleInput1Click}
                 onChange={(event) => handleInputChange(event, 'input1')}
                 onBlur={() => handleInputBlur('input1')}
               />
               <ul>
-                {citySuggestionsInput1.map((suggestion, index) => (
+              {searchTermInput1.trim() === '' ? (
+                citySuggestionsInput1.map((suggestion, index) => (
                   <li key={index}>{suggestion}</li>
-                ))}
+                ))
+              ) : (
+                popularCities.map((city, index) => (
+                  <li key={index}>{city}</li>
+                ))
+              )}
               </ul>
             </div>
 
@@ -83,22 +114,29 @@ const SearchBar: React.FC = () => {
           <div id='posSvg'color="#ccc"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><defs><path d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-8-3a8 8 0 1 1 16 0c0 1.842-1.176 4.053-3.53 6.635L12 22l-4.47-5.365C5.175 14.053 4 11.842 4 10z" id="Pin__a"></path></defs><use fill="currentColor" xlinkHref="#Pin__a" fill-rule="evenodd"></use></svg></div>
         </div>
         <div>
-              <input
-                type="text"
-                autoCorrect="off"
-                autoComplete="off"
-                data-e2e="arrivalPositionInput"
-                data-id="arrivalPosition"
-                placeholder="to: City, Station or Airport"
-                value={searchTermInput2}
-                id="input2"
-                onChange={(event) => handleInputChange(event, 'input2')}
-                onBlur={() => handleInputBlur('input2')}
-              />
+          <input
+          type="text"
+          autoCorrect="off"
+          autoComplete="off"
+          data-e2e="arrivalPositionInput"
+          data-id="arrivalPosition"
+          placeholder="to: City, Station or Airport"
+          value={searchTermInput2}
+          id="input2"
+          onClick={handleInput2Click}
+          onChange={(event) => handleInputChange(event, 'input2')}
+          onBlur={() => handleInputBlur('input2')}
+          />
               <ul>
-                {citySuggestionsInput2.map((suggestion, index) => (
+              {searchTermInput1.trim() === '' ? (
+                citySuggestionsInput1.map((suggestion, index) => (
                   <li key={index}>{suggestion}</li>
-                ))}
+                ))
+              ) : (
+                popularCitiesFrom.map((city, index) => (
+                  <li key={index}>{city}</li>
+                ))
+              )}
               </ul>
             </div>  
       </div>
