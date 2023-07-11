@@ -176,13 +176,9 @@ const SearchBar: React.FC = () => {
           </div>
         {/* Fermeture second input */}
         </div>
-
-        <div className='date'>
-          {/* Date */}
+          {/* Date & Retour */}
           <DateComponent/>
-          {/* Retour */}
-          <button className='return'>Add return</button>
-        </div>
+
         {/* Bouton de validation */}
         <input type="submit" value="search" className="search"></input>
 
