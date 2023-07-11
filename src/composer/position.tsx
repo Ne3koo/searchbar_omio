@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import axios from 'axios';
 
 export const fetchCitySuggestions = async (searchTerm: string): Promise<string[]> => {
@@ -12,15 +11,3 @@ export const fetchCitySuggestions = async (searchTerm: string): Promise<string[]
   }
 };
 
-export const updateSearchBarInput = async (inputId: string, searchTerm: string): Promise<void> => {
-  try {
-    const cities = await fetchCitySuggestions(searchTerm);
-    const inputElement = document.getElementById(inputId) as HTMLInputElement;
-
-    if (inputElement) {
-      inputElement.value = cities[0] || ''; // Update the input value with the first city suggestion
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};

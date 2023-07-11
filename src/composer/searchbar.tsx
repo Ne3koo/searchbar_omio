@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { fetchCitySuggestions, updateSearchBarInput } from './position';
+import { fetchCitySuggestions } from './position';
 import { fetchPopularCities } from './fromPopoular';
 import { fetchPopularCitiesFrom } from './toPopular';
 import DateComponent from './date';
-
+import Popup from './popup';
 
 const SearchBar: React.FC = () => {
   const [searchTermInput1, setSearchTermInput1] = useState('');
@@ -72,11 +71,9 @@ const SearchBar: React.FC = () => {
             <option value="round-trip">round-trip</option>
           </select>
           {/* Choix des passagers */}
-          <select name="age" id="age">
-            <option value="adult">adult</option>
-            <option value="youth">youth</option>
-            <option value="senior">senior</option>
-          </select>
+          <div>
+          <Popup/>
+          </div>
         </div>
 
         {/* Premier input */}
