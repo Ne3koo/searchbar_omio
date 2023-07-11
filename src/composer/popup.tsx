@@ -21,6 +21,3 @@ const Popup = () => {
 };
 
 export default Popup;
-          {/* {Array.from({ length: 10 }, (_, index) => (
-            <option key={index} value={index}>{index}</option>
-          ))} */}

@@ -20,8 +20,6 @@ const DateComponent: React.FC = () => {
 
   const handleDateChange = (date: Date | Date[]) => {
     if (Array.isArray(date)) {
-      // Si vous souhaitez gérer une sélection de plage de dates
-      // Vous pouvez mettre en œuvre votre logique ici
     } else {
       setCurrentDate(date as Date);
     }
@@ -32,6 +30,7 @@ const DateComponent: React.FC = () => {
     month: 'short',
     day: 'numeric',
   };
+
   const formattedDate = currentDate.toLocaleDateString('en-US', options);
 
   return (
@@ -51,7 +50,7 @@ const DateComponent: React.FC = () => {
         </button>
       </div>
       <div className="add-return">
-        <button onClick={handleNextMonthClick} className='return'>Ajouter un retour</button>
+        <button onClick={handleNextMonthClick} className='return'>Add return</button>
       </div>
       {(calendarOpen || nextMonthCalendarOpen) && (
         <div className="calendars-container">

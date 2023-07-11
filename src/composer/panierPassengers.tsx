@@ -70,15 +70,12 @@ const PanierPassenger = () => {
   const seniorAgeOptions = Array.from({ length: 18 }, (_, index) => index + 58);
 
   return (
+
     <div>
       <div>
         <label htmlFor="adults">Adults:</label>
         <button onClick={() => setAdults(Math.max(adults - 1, 0))}>{DecrementIcon()}</button>
-        <span id="adults" onChange={handleAdultsChange}>{adults}
-          {/* {Array.from({ length: 10 }, (_, index) => (
-            <option key={index} value={index}>{index}</option>
-          ))} */}
-        </span>
+        <span id="adults" onChange={handleAdultsChange}>{adults}</span>
         <button onClick={() => setAdults(Math.min(adults + 1, 9))}>{IncrementIcon()}</button>
       </div>
       <div>
@@ -108,11 +105,13 @@ const PanierPassenger = () => {
       )}
       <div>
         <label htmlFor="seniors">Seniors:</label>
+        <button onClick={() => setSeniors(Math.max(seniors - 1, 0))}>{DecrementIcon()}</button>
         <select id="seniors" value={seniors} onChange={handleSeniorsChange}>
           {Array.from({ length: 10 }, (_, index) => (
             <option key={index} value={index}>{index}</option>
           ))}
         </select>
+        <button onClick={() => setSeniors(Math.min(seniors + 1, 9))}>{IncrementIcon()}</button>
       </div>
       {seniors > 0 && (
         <div>
