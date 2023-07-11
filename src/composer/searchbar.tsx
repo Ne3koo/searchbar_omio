@@ -27,6 +27,13 @@ const SearchBar: React.FC = () => {
       setCitySuggestionsInput2(suggestions);
     }
   };  
+  const handleSuggestionClick = (suggestion: string, inputId: string) => {
+    if (inputId === 'input1') {
+      setSearchTermInput1(suggestion);
+    } else if (inputId === 'input2') {
+      setSearchTermInput2(suggestion);
+    }
+  };  
 
   const handleInputBlur = (inputId: string) => {
     if (inputId === 'input1') {
@@ -91,14 +98,18 @@ const SearchBar: React.FC = () => {
               />
               <ul>
               {searchTermInput1.trim() === '' ? (
-                citySuggestionsInput1.map((suggestion, index) => (
-                  <li key={index}>{suggestion}</li>
-                ))
-              ) : (
-                popularCities.map((city, index) => (
-                  <li key={index}>{city}</li>
-                ))
-              )}
+              citySuggestionsInput1.map((suggestion, index) => (
+                <li key={index} onClick={() => handleSuggestionClick(suggestion, 'input1')}>
+                  {suggestion}
+                </li>
+              ))
+            ) : (
+              popularCities.map((city, index) => (
+                <li key={index} onClick={() => handleSuggestionClick(city, 'input1')}>
+                  {city}
+                </li>
+              ))
+            )}
               </ul>
             </div>
 
