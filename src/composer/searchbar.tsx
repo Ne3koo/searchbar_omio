@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { fetchCitySuggestions, updateSearchBarInput } from './position';
+import { fetchCitySuggestions } from './position';
 import { fetchPopularCities } from './fromPopoular';
 import { fetchPopularCitiesFrom } from './toPopular';
 import DateComponent from './date';
-
+import Popup from './popup';
 
 const SearchBar: React.FC = () => {
   const [searchTermInput1, setSearchTermInput1] = useState('');
@@ -59,7 +58,17 @@ const SearchBar: React.FC = () => {
     const citiesFrom = await fetchPopularCitiesFrom(searchTermInput1);
     setPopularCitiesFrom(citiesFrom);
   };
-  
+
+  // Définissez une fonction de permutation des valeurs des inputs
+  const swapInputValues = () => {
+  setSearchTermInput1(searchTermInput2);
+  setSearchTermInput2(searchTermInput1);
+  };
+
+  // Définissez une fonction de gestion du clic sur la div "changeInputSvg"
+  const handleSwapClick = () => {
+  swapInputValues();
+  };
 
   return (
     <body>
@@ -72,11 +81,9 @@ const SearchBar: React.FC = () => {
             <option value="round-trip">round-trip</option>
           </select>
           {/* Choix des passagers */}
-          <select name="age" id="age">
-            <option value="adult">adult</option>
-            <option value="youth">youth</option>
-            <option value="senior">senior</option>
-          </select>
+          <div>
+          <Popup/>
+          </div>
         </div>
 
         {/* Premier input */}
@@ -96,8 +103,6 @@ const SearchBar: React.FC = () => {
             type="text"
             autoCorrect="off"
             autoComplete=""
-            data-e2e="departurePositionInput"
-            data-id="departurePosition"
             placeholder="from: City, Station or Airport"
             value={searchTermInput1}
             id="input1"
@@ -120,7 +125,7 @@ const SearchBar: React.FC = () => {
             </ul>
           </div>
           {/* Contient le SVG permettant permutation au From...TO */}
-          <div id='changeInputSvG' color="#5E90CC">
+          <div id='changeInputSvG' color="#5E90CC" onClick={handleSwapClick}>
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
               <path d="M6.632 5.763L3.757 8.961a.978.978 0 0 1-1.454 0 1.21 1.21 0 0 1 0-1.618l4.499-5.005a1 1 0 0 1 
               1.487 0l4.397 4.892a1.21 1.21 0 0 1-.073 1.691.978.978 0 0 1-1.38-.073l-2.58-2.869v11.017a1 1 0 0 1-1 
@@ -150,9 +155,7 @@ const SearchBar: React.FC = () => {
           <input
           type="text"
           autoCorrect="off"
-          autoComplete="off"
-          data-e2e="arrivalPositionInput"
-          data-id="arrivalPosition"
+          autoComplete=""
           placeholder="to: City, Station or Airport"
           value={searchTermInput2}
           id="input2"
@@ -163,7 +166,7 @@ const SearchBar: React.FC = () => {
           {/* API suggestion */}
           <ul>
           {searchTermInput1.trim() === '' ? (
-          citySuggestionsInput1.map((suggestion, index) => (
+          citySuggestionsInput2.map((suggestion, index) => (
           <li key={index}>{suggestion}</li>
           ))
           // API auto-complétion
