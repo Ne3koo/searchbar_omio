@@ -140,14 +140,18 @@ const SearchBar: React.FC = () => {
           />
               <ul>
               {searchTermInput1.trim() === '' ? (
-                citySuggestionsInput1.map((suggestion, index) => (
-                  <li key={index}>{suggestion}</li>
-                ))
-              ) : (
-                popularCitiesFrom.map((city, index) => (
-                  <li key={index}>{city}</li>
-                ))
-              )}
+              citySuggestionsInput1.map((suggestion, index) => (
+                <li key={index} onClick={() => handleSuggestionClick(suggestion, 'input2')}>
+                  {suggestion}
+                </li>
+              ))
+            ) : (
+              popularCities.map((city, index) => (
+                <li key={index} onClick={() => handleSuggestionClick(city, 'input2')}>
+                  {city}
+                </li>
+              ))
+            )}
               </ul>
             </div>  
       </div>
