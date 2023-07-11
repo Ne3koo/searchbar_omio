@@ -58,8 +58,6 @@ const SearchBar: React.FC = () => {
     const citiesFrom = await fetchPopularCitiesFrom(searchTermInput1);
     setPopularCitiesFrom(citiesFrom);
   };
-  // Ajoutez un état pour le suivi de l'input actif
-  const [activeInput, setActiveInput] = useState('input1');
 
   // Définissez une fonction de permutation des valeurs des inputs
   const swapInputValues = () => {
