@@ -1,6 +1,7 @@
 {
   "name": "searchbar_omio",
   "version": "0.1.0",
+  "homepage": "https://Ne3koo.github.io/searchbar_omio",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.4.0",
@@ -23,6 +24,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -47,6 +50,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-datepicker": "^4.11.2"
+    "@types/react-datepicker": "^4.11.2",
+    "gh-pages": "^5.0.0"
   }
 }
