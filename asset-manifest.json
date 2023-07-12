@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/searchbar_omio/static/css/main.e78f4908.css",
+    "main.js": "/searchbar_omio/static/js/main.9d6697b3.js",
+    "static/js/787.54ff1a1c.chunk.js": "/searchbar_omio/static/js/787.54ff1a1c.chunk.js",
+    "static/media/batbat.png": "/searchbar_omio/static/media/batbat.bbd12af31840cf273551.png",
+    "index.html": "/searchbar_omio/index.html",
+    "main.e78f4908.css.map": "/searchbar_omio/static/css/main.e78f4908.css.map",
+    "main.9d6697b3.js.map": "/searchbar_omio/static/js/main.9d6697b3.js.map",
+    "787.54ff1a1c.chunk.js.map": "/searchbar_omio/static/js/787.54ff1a1c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e78f4908.css",
+    "static/js/main.9d6697b3.js"
+  ]
+}
