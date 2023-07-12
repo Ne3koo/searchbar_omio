@@ -27,7 +27,7 @@ const SearchBar: React.FC = () => {
       const suggestions = await fetchCitySuggestions(value);
       setCitySuggestionsInput2(suggestions);
     }
-  };
+  };  
 
   const handleInputBlur = (inputId: string) => {
     if (inputId === 'input1') {
@@ -36,6 +36,13 @@ const SearchBar: React.FC = () => {
       setCitySuggestionsInput2([]);
     }
   };
+  const handleSuggestionClick = (suggestion: string, inputId: string) => {
+    if (inputId === 'input1') {
+      setSearchTermInput1(suggestion);
+    } else if (inputId === 'input2') {
+      setSearchTermInput2(suggestion);
+    }
+  };  
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -124,16 +131,19 @@ const SearchBar: React.FC = () => {
             </div>
             {/* API suggestions villes */}
             <ul>
-              {searchTermInput1.trim() === '' ? (
-                citySuggestionsInput1.map((suggestion, index) => (
-                  <li key={index}>{suggestion}</li>
-                ))
-                // API auto-complétion
-              ) : (
-                popularCities.map((city, index) => (
-                  <li key={index}>{city}</li>
-                ))
-              )}
+            {searchTermInput1.trim() === '' ? (
+              citySuggestionsInput1.map((suggestion, index) => (
+                <li key={index} onClick={() => handleSuggestionClick(suggestion, 'input1')}>
+                  {suggestion}
+                </li>
+              ))
+            ) : (
+              popularCities.map((city, index) => (
+                <li key={index} onClick={() => handleSuggestionClick(city, 'input1')}>
+                  {city}
+                </li>
+              ))
+            )}
             </ul>
           </div>
           {/* fermeture balise du premier input */}
@@ -166,16 +176,19 @@ const SearchBar: React.FC = () => {
             />
             {/* API suggestion */}
             <ul>
-              {searchTermInput1.trim() === '' ? (
-                citySuggestionsInput2.map((suggestion, index) => (
-                  <li key={index}>{suggestion}</li>
-                ))
-                // API auto-complétion
-              ) : (
-                popularCitiesFrom.map((city, index) => (
-                  <li key={index}>{city}</li>
-                ))
-              )}
+            {searchTermInput2.trim() === '' ? (
+              citySuggestionsInput2.map((suggestion, index) => (
+                <li key={index} onClick={() => handleSuggestionClick(suggestion, 'input2')}>
+                  {suggestion}
+                </li>
+              ))
+            ) : (
+              popularCitiesFrom.map((city, index) => (
+                <li key={index} onClick={() => handleSuggestionClick(city, 'input2')}>
+                  {city}
+                </li>
+              ))
+            )}
             </ul>
           </div>
           {/* Fermeture second input */}
