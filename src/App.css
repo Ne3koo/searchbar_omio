@@ -1,38 +1,275 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
+select,
+button,
+.search {
+  cursor: pointer;
+}
+
+#changeInputSvG {
+  width: 20px;
+  transform: rotate(180deg);
+  transform-origin: center center;
+  position: absolute;
+  right: -20px;
+  top: 1px;
+  background-color: #f1f2f6;
+  height: 40.8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px 0 0 5px;
+
+}
+
+div {
+  width: 100%;
+}
+
+#changeInputSvG svg {
+  fill: rgb(94, 144, 204) !important;
+}
+
+.search-bar svg {
+  width: 18px;
+  height: 18px;
+  fill: #999999;
+}
+
+#posSvg,
+#SvgLocalisation {
+  width: 24px;
+  height: 24px;
+  color: #ccc;
+  transform: undefined;
+  transform-origin: center;
+  float: undefined;
+  display: undefined;
+  position: undefined;
+  margin: undefined;
+  right: undefined;
+  top: undefined;
+  cursor: undefined
+}
+
+form {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(19, 41, 104, .1);
+  width: 70%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.select {
+  align-self: flex-start;
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.select select {
+  border: none;
+  font-size: 1.1rem;
+}
+
+#age {
+  border: none;
+  background-color: #fff;
+  font-size: 1.1rem;
+}
+
+#input1,
+#input2 {
+  width: 100%;
+  padding: 10px 10px 10px 25px;
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+  color: #a1a9c3;
+  border: none;
+  background-color: rgb(242, 242, 242);
+  border-radius: 5px;
+}
+
+#input1::placeholder,
+#input2::placeholder {
+  color: #a1a9c3;
+}
+
+#input1:focus,
+#input2:focus,
+#date:focus,
+.return:focus {
+  border: 1px solid #a1a9c3;
+  outline: 0;
+}
+
+#SvgLocalisation,
+#posSvg,
+#calendar {
+  display: flex;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  height: 40px;
+  border-radius: 5px 0 0 5px;
+  width: 20px;
+  pointer-events: none;
+  background-color: #f1f2f6;
+  justify-content: center;
+}
+
+#SvgLocalisation svg,
+#posSvg svg,
+#calendar svg {
+  fill: #999999;
+  align-self: center;
+}
+#calendar {
+  margin-right: 8px;
+}
+.date-text {
+  text-align: center;
+  flex-grow: 1;
+}
+.button-content {
+  display: flex;
+  align-items: center;
+}
+.relativ {
+  position: relative;
+  width: 95%;
+  margin-left: -10px;
+}
+
+.date {
+  display: flex;
+  width: 100%;
+  margin-bottom: 10px;
+}
+#date,
+.return {
+  padding-top: 1px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: px;
+  font-size: 1.1rem;
+  color: #a1a9c3;
+  border: none;
+  background-color: rgb(242, 242, 242);
+  flex: 2;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+#date div:first-child{
+  position: relative;
+}
+.calendars-container{
+  position: absolute;
+  top: 90px;
+}
+
+.return::before {
+  position: absolute;
+  left: -1px;
+  top: 50%;
+  margin-top: -12px;
+  content: "";
+  height: 24px;
+  width: 1px;
+  background-color: #ccc;
+}
+
+#date {
+  border-radius: 5px;
+}
+
+.search {
+  background-color: #fa6b6b;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.search:hover {
+  background-color: #ff8686;
+  transition: 0.2s ease-in-out;
+}
+#impressions{
+  margin-left: 1px;
+  font-family: 'Montserrat', sans-serif;
+}
+#impressions h1{
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.batbat{
+  margin: auto;
+  display: block;
+  width: 80%;
+  margin-bottom: 15px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media screen and (min-width: 768px) {
+  /* Styles pour la version ordinateur */
+  form {
+    width: 80%;
+    margin: auto;
   }
+  .select {
+    margin-right: 10px;
+    margin-bottom: 15px;
+    display: flex;
+}
+#input1,
+#input2 {
+  width: 100%;
+  display: inline-block;
+  flex: 1;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.search {
+  width: 150px;
+}
+.search-bar {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
 }
 
-.App-link {
-  color: #61dafb;
+#changeInputSvG {
+  right: -30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#impressions {
+  margin-left: 10px;
+}
+
+#impressions h1 {
+  font-size: 2rem;
+}
+#date{
+  width: 90%;
+  align-items: baseline;
+}
+.batbat{
+  position: absolute;
+  top: 33%;
+  left: 80%;
+  width: 125px;
+}
+.return{
+  width: 100%;
+}
+.search{
+  width: 70%;
+  margin: 15px;
+}
 }
