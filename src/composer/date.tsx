@@ -34,19 +34,21 @@ const DateComponent: React.FC = () => {
   const formattedDate = currentDate.toLocaleDateString('en-US', options);
 
   return (
-    <div id="date" className='date'>
+    <div className='date' id='date'>
       <div>
         <button onClick={handleDateClick} id="date">
-          <div onClick={handleDateClick}>
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path
+          <div className="button-content">
+            <div onClick={handleDateClick} id='calendar'>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
                 d="M18 5h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2V4a1 1 0 1 1 2 0v1h8V4a1 1 0 0 1 2 0v1zM5 10a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7a1 1 0 0 0-1-1H5z"
                 fill="currentColor"
                 fillRule="evenodd"
-              ></path>
-            </svg>
+                ></path>
+              </svg>
+            </div>
+            <div className="date-text">{formattedDate}</div>
           </div>
-          {formattedDate}
         </button>
       </div>
       <div className="add-return">
